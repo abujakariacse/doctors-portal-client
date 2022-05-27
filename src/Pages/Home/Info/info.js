@@ -11,7 +11,7 @@ const info = () => {
         { _id: 3, img: phone, title: 'Contact us now', description: '+8801316460386', bgColor: 'bg-gradient-to-r from-secondary to-primary' }
     ];
     return (
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 lg:px-16 px-6'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 lg:px-16 px-6 mb-32'>
             {
                 infos.map(info => <InfoCard key={info._id} info={info}></InfoCard>)
             }

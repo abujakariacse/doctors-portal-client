@@ -3,13 +3,13 @@ import React from 'react';
 const Review = ({ review }) => {
     const { img, reviewText, name, location } = review;
     return (
-        <div class="card lg:max-w-lg w-11/12 mx-auto bg-base-100 shadow-xl mb-11 py-8">
-            <div class="card-body">
+        <div className="card lg:max-w-lg w-11/12 mx-auto bg-base-100 shadow-xl mb-11 py-8">
+            <div className="card-body">
                 <p className='text-black'>{reviewText}</p>
             </div>
             <div className='pl-8 flex items-center'>
-                <div class="avatar">
-                    <div class="w-16 rounded-full ring ring-primary ring-offset-base-100 mr-5">
+                <div className="avatar">
+                    <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 mr-5">
                         <img src={img} alt='' />
                     </div>
                 </div>

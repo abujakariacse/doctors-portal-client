@@ -13,7 +13,7 @@ const Testimonials = () => {
 
     ];
     return (
-        <section className='lg:px-14 text-center'>
+        <section className='lg:px-14 text-center mb-36'>
             <div className='flex items-center'>
                 <div className='flex-1'>
                     <h2 className='text-xl text-primary'>Testimonial</h2>
