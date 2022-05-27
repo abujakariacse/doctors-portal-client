@@ -5,7 +5,7 @@ import PrimaryButton from '../../Shared/PrimaryButton';
 
 const AppointmentBanner = () => {
     return (
-        <div className="hero mt-40 mb-20" style={{ background: `url(${Appointment})` }} >
+        <div className="hero lg:mt-40 mt-16 mb-20" style={{ background: `url(${Appointment})` }} >
             <div className="bg-cover hero-content grid grid-cols-1 lg:grid-cols-2 rounded-sm mb-[-35px]">
                 <img src={doctor} className=" rounded-lg mt-[-140px] hidden lg:block" alt='appointment_banner' />
                 <div className='py-28'>

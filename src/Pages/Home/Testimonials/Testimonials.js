@@ -13,7 +13,7 @@ const Testimonials = () => {
 
     ];
     return (
-        <section className='lg:px-14 text-center mb-36'>
+        <section className='lg:px-14 text-center lg:mb-36'>
             <div className='flex items-center'>
                 <div className='flex-1'>
                     <h2 className='text-xl text-primary'>Testimonial</h2>
@@ -23,7 +23,7 @@ const Testimonials = () => {
                     <img className='lg:w-48 w-12' src={quote} alt="" />
                 </div>
             </div>
-            <div className='grid lg:grid-cols-3 grid-cols-1 gap-7'>
+            <div className='grid lg:grid-cols-3 grid-cols-1 gap-4'>
                 {
                     reviews.map(review => <Review
                         key={review._id}
