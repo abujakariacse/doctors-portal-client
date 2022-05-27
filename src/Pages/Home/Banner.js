@@ -3,7 +3,7 @@ import chair from '../../assets/images/chair.png';
 
 const Banner = () => {
     return (
-        <div className='hero lg:my-32 my-12'>
+        <div className='bg-[url("https://i.ibb.co/TghrQxY/bg.png")] hero lg:my-32 my-12'>
             < div className="hero-content flex-col lg:flex-row-reverse" >
                 <img src={chair} className="lg:max-w-md rounded-lg shadow-2xl" alt='chair_image' />
                 <div className='mt-5'>
