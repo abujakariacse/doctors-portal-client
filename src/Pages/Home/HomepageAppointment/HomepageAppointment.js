@@ -3,7 +3,7 @@ import doctor from '../../../assets/images/doctor-small.png';
 import Appointment from '../../../assets/images/appointment.png';
 import PrimaryButton from '../../Shared/PrimaryButton';
 
-const AppointmentBanner = () => {
+const HomepageAppointment = () => {
     return (
         <div className="hero lg:mt-40 mt-16 mb-20" style={{ background: `url(${Appointment})` }} >
             <div className="bg-cover hero-content grid grid-cols-1 lg:grid-cols-2 rounded-sm mb-[-35px]">
@@ -19,4 +19,4 @@ const AppointmentBanner = () => {
     );
 };
 
-export default AppointmentBanner;
+export default HomepageAppointment;

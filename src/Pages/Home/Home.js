@@ -1,4 +1,5 @@
-import AppointmentBanner from './AppointmentBanner/AppointmentBanner';
+import Footer from '../Shared/Footer/Footer';
+import AppointmentBanner from './HomepageAppointment/HomepageAppointment';
 import Banner from './Banner';
 import Contact from './Contact/Contact';
 import Info from './Info/info';
@@ -14,6 +15,7 @@ const Home = () => {
             <AppointmentBanner />
             <Testimonials />
             <Contact />
+            <Footer />
         </div>
     );
 };

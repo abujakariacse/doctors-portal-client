@@ -7,6 +7,7 @@ const Footer = () => {
     return (
         <footer style={{ background: `url(${FooterImg})`, backgroundSize: 'cover' }}>
             <div className="footer p-10">
+
                 <div>
                     <span className="footer-title">Services</span>
                     <Link to='' className="link link-hover">Emergency Checkup</Link>
