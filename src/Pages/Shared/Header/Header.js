@@ -1,14 +1,21 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link, NavLink } from 'react-router-dom';
+import auth from '../../../firebase.init';
 
 const Header = ({ children }) => {
+    const [user] = useAuthState(auth);
+    const logout = () => {
+        signOut(auth)
+    }
     const menuItems = <>
         <li><NavLink className='rounded-md h-10 mr-4 font-bold' to='/'>Home</NavLink></li>
         <li><NavLink className='rounded-md h-10 mr-4 font-bold' to='/about'>About</NavLink></li>
         <li><NavLink className='rounded-md h-10 mr-4 font-bold' to='/appointment'>Appointment</NavLink></li>
         <li><NavLink className='rounded-md h-10 mr-4 font-bold' to='/reviews'>Reviews</NavLink></li>
         <li><NavLink className='rounded-md h-10 mr-4 font-bold' to='/contact'>Contact</NavLink></li>
-        <li><NavLink className='rounded-md h-10 mr-4 font-bold' to='/login'>Login</NavLink></li>
+        <li>{user ? <Link onClick={logout} to='login' className='rounded-md h-10 mr-4 font-bold'>Sign Out</Link> : <NavLink className='rounded-md h-10 mr-4 font-bold' to='/login'>Login</NavLink>}</li>
     </>;
     return (
         <div className="drawer drawer-end">
