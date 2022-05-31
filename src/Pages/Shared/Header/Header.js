@@ -8,7 +8,7 @@ const Header = ({ children }) => {
         <li><NavLink className='rounded-md h-10 mr-4 font-bold' to='/appointment'>Appointment</NavLink></li>
         <li><NavLink className='rounded-md h-10 mr-4 font-bold' to='/reviews'>Reviews</NavLink></li>
         <li><NavLink className='rounded-md h-10 mr-4 font-bold' to='/contact'>Contact</NavLink></li>
-        <li><NavLink className='rounded-md h-10 mr-4 font-bold' to='login'>Login</NavLink></li>
+        <li><NavLink className='rounded-md h-10 mr-4 font-bold' to='/login'>Login</NavLink></li>
     </>;
     return (
         <div className="drawer drawer-end">
