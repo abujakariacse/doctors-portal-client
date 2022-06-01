@@ -10,13 +10,6 @@ const firebaseConfig = {
     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
     appId: process.env.REACT_APP_APP_ID
-
-    /*    apiKey: "AIzaSyBLts0jikBcOxx1zB1Gp_aLCA0SOsDcSm0",
-       authDomain: "doctors-portal-aj.firebaseapp.com",
-       projectId: "doctors-portal-aj",
-       storageBucket: "doctors-portal-aj.appspot.com",
-       messagingSenderId: "216277773354",
-       appId: "1:216277773354:web:65c1ab2753f063b31ba753" */
 };
 
 // Initialize Firebase
