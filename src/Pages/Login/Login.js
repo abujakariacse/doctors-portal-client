@@ -87,7 +87,7 @@ const Login = () => {
                             </label>
                         </div>
                         {signInErrorMessage}
-
+                        <p className='mb-3'><Link to='/forgotpassword'>Forgot Password?</Link></p>
                         <input className='btn btn-accent w-full max-w-xs text-white' type="submit" value='Login' />
                     </form>
                     <p className='text-center'>New to Doctors Portal? <Link className='text-primary' to='/register'>Register</Link></p>

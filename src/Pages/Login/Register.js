@@ -1,9 +1,10 @@
 import React from 'react';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading/Loading';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Register = () => {
 
@@ -14,6 +15,7 @@ const Register = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
+    const [sendEmailVerification, sending, verifyError] = useSendEmailVerification(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const navigate = useNavigate();
 
@@ -28,14 +30,18 @@ const Register = () => {
     if (loading || gLoading || updating) {
         return <Loading></Loading>
     }
-    if (error || gError || updateError) {
-        signInErrorMessage = <p className='text-red-500'><span>{error?.message}</span></p> || <p className='text-red-500'><span>{gError?.message}</span></p> || <p className='text-red-500'><span>{updateError?.message}</span></p>
+    if (error || gError || updateError || verifyError) {
+        signInErrorMessage = <p className='text-red-500'><span>{error?.message}</span></p> || <p className='text-red-500'><span>{gError?.message}</span></p> || <p className='text-red-500'><span>{updateError?.message}</span></p> || <p className='text-red-500'><span>{verifyError?.message}</span></p>
+    }
+    if (sending) {
+        return <Loading></Loading>
     }
 
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name })
-        console.log(data)
+        await sendEmailVerification(data.email);
+        await toast('Verification Email Sent');
     }
     return (
         <div className='flex justify-center h-screen items-center'>
