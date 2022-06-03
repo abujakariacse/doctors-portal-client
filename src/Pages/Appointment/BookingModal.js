@@ -2,8 +2,8 @@ import { format } from 'date-fns';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import { toast } from 'react-toastify';
-const BookingModal = ({ treatment, setTreatment, date }) => {
+import Swal from 'sweetalert2';
+const BookingModal = ({ treatment, setTreatment, date, refetch }) => {
     const { _id, name, slots } = treatment;
     const [user] = useAuthState(auth);
     const handleFormSubmitOnModal = e => {
@@ -32,11 +32,16 @@ const BookingModal = ({ treatment, setTreatment, date }) => {
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    toast.info('Appointment Booked');
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Service Booked',
+                        showConfirmButton: false,
+                        timer: 1200
+                    })
                 }
 
             })
-
+        refetch();
         setTreatment(null);
     }
     return (
@@ -58,7 +63,7 @@ const BookingModal = ({ treatment, setTreatment, date }) => {
                         <input name='name' type="text" defaultValue={user?.displayName} disabled className="input input-bordered w-full max-w-xs font-bold" required />
                         <input name='phone' type="number" placeholder='Phone Number' className="input input-bordered w-full max-w-xs" required />
                         <input name='email' type="email" defaultValue={user?.email} disabled className="input input-bordered w-full max-w-xs font-bold" required />
-                        <input type="submit" className='btn btn-primary w-full max-w-xs' value="Submit" />
+                        <input type="submit" className='btn btn-primary w-full max-w-xs text-white' value="Submit" />
                     </form>
                 </div>
             </div>
