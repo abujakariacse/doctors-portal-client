@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading/Loading';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
 
@@ -22,10 +23,10 @@ const Register = () => {
     // React Hook Forms
     const { register, formState: { errors }, handleSubmit } = useForm();
     let signInErrorMessage;
-    if (user || gUser) {
-        // console.log(user || gUser);
-        navigate('/appointment');
+    const [token] = useToken(user || gUser);
 
+    if (token) {
+        navigate('/appointment');
     }
     if (loading || gLoading || updating) {
         return <Loading></Loading>

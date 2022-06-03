@@ -1,6 +1,8 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading/Loading';
 import Appointment from './Appointment';
@@ -8,8 +10,21 @@ import Appointment from './Appointment';
 
 const MyAppointments = () => {
     const [user] = useAuthState(auth);
-    const { data, isLoading } = useQuery('appointments', () => fetch(`http://localhost:5000/myappointments?email=${user?.email}`)
-        .then(res => res.json()))
+    const navigate = useNavigate();
+    const { data, isLoading } = useQuery('appointments', () => fetch(`http://localhost:5000/myappointments?email=${user?.email}`, {
+        method: 'GET',
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    })
+        .then(res => {
+            if (res.status === 401 || res.status === 403) {
+                navigate('/');
+                signOut(auth);
+                localStorage.removeItem('accessToken');
+            }
+            return res.json()
+        }))
 
     if (isLoading) {
         return <Loading></Loading>
