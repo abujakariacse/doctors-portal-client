@@ -24,7 +24,28 @@ const User = ({ user, serial, refetch }) => {
                 })
             })
     }
-    const handleUserDelete = () => {
+    const handleDeleteApi = () => {
+        fetch(`http://localhost:5000/user/delete/${email}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Deleted',
+                        text: 'User has been successfully deleted',
+                        showConfirmButton: false,
+                        timer: 1200
+                    })
+                }
+            })
+    }
+    const deleteAlert = () => {
         Swal.fire({
             title: 'Delete',
             text: 'Are you sure to delete the user?',
@@ -37,10 +58,25 @@ const User = ({ user, serial, refetch }) => {
         })
             .then(result => {
                 if (result.isConfirmed) {
+                    handleDeleteApi();
+                }
+            })
+    }
+    const handleRemoveAdmin = () => {
+        fetch(`http://localhost:5000/admin/remove/${email}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    refetch()
                     Swal.fire({
                         icon: 'success',
-                        title: 'Deleted',
-                        text: 'User has been successfully Deleted',
+                        title: 'Removed as Admin',
+                        text: 'Successfully removed as admin',
                         showConfirmButton: false,
                         timer: 1200
                     })
@@ -54,7 +90,9 @@ const User = ({ user, serial, refetch }) => {
                 <th>{serial}</th>
                 <td>{email}</td>
                 <td>{role !== 'admin' && <button onClick={handleMakeAdmin} className="btn btn-xs">Make Admin</button>}</td>
-                <td><button onClick={handleUserDelete} className='text-red-600 text-xl'><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></button></td>
+                <td>{role === 'admin' && <button onClick={handleRemoveAdmin} className="btn btn-xs">Remove as Admin</button>}</td>
+
+                <td><button onClick={deleteAlert} className='text-red-600 text-xl'><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></button></td>
             </tr>
         </tbody>
     );

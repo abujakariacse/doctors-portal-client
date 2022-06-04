@@ -23,6 +23,7 @@ const Users = () => {
                         <th>Serial No.</th>
                         <th>Patient Name</th>
                         <th>Role</th>
+                        <th>Remove Role</th>
                         <th></th>
                     </tr>
                 </thead>

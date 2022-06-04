@@ -11,7 +11,7 @@ import Appointment from './Appointment';
 const MyAppointments = () => {
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
-    const { data, isLoading } = useQuery('appointments', () => fetch(`http://localhost:5000/myappointments?email=${user?.email}`, {
+    const { data, isLoading, refetch } = useQuery('appointments', () => fetch(`http://localhost:5000/myappointments?email=${user?.email}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -48,6 +48,7 @@ const MyAppointments = () => {
                         data?.map((appointment, index) => <Appointment
                             serial={index + 1}
                             key={appointment._id}
+                            refetch={refetch}
                             appointment={appointment}></Appointment>)
                     }
                 </table>

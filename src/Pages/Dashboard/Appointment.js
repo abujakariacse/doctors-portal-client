@@ -2,8 +2,10 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import Swal from 'sweetalert2';
-const Appointment = ({ appointment, serial }) => {
-    const { patient, serviceName, date, slot } = appointment;
+const Appointment = ({ appointment, serial, refetch }) => {
+    const { _id, patient, serviceName, date, slot } = appointment;
+
+    //    Tried but not working
     const handleAppointmentDelete = e => {
         e.preventDefault();
         Swal.fire({
@@ -17,13 +19,25 @@ const Appointment = ({ appointment, serial }) => {
         })
             .then(result => {
                 if (result.isConfirmed) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Deleted',
-                        text: 'Your Booked Appointment Has been Deleted',
-                        showConfirmButton: false,
-                        timer: 1200
+                    fetch(`http://localhost:5000/booking/delete/${_id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                        }
                     })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.deletedCount > 0) {
+                                refetch();
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Appointment Removed',
+                                    text: 'Appointment successfully removed',
+                                    showConfirmButton: false,
+                                    timer: 1200
+                                })
+                            }
+                        })
                 }
             })
 
