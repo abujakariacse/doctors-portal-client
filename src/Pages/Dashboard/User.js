@@ -89,8 +89,8 @@ const User = ({ user, serial, refetch }) => {
             <tr>
                 <th>{serial}</th>
                 <td>{email}</td>
-                <td>{role !== 'admin' && <button onClick={handleMakeAdmin} className="btn btn-xs">Make Admin</button>}</td>
-                <td>{role === 'admin' && <button onClick={handleRemoveAdmin} className="btn btn-xs">Remove as Admin</button>}</td>
+                <td>{role !== 'admin' && <button onClick={handleMakeAdmin} className="btn btn-xs btn-primary text-white">Make Admin</button>}</td>
+                <td>{role === 'admin' && <button onClick={handleRemoveAdmin} className="btn btn-xs btn-error text-white">Remove as Admin</button>}</td>
 
                 <td><button onClick={deleteAlert} className='text-red-600 text-xl'><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></button></td>
             </tr>

@@ -12,7 +12,6 @@ const BookingModal = ({ treatment, setTreatment, date, refetch }) => {
         const phone = e.target.phone.value;
         const email = e.target.email.value;
         const slot = e.target.slot.value;
-        console.log(_id, slot, name, phone, email);
         const booking = {
             bookingId: _id,
             serviceName: name,
