@@ -1,12 +1,16 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import auth from '../../firebase.init';
 import useAdmin from '../../hooks/useAdmin';
+import Loading from '../Shared/Loading/Loading';
 
 const Dashboard = () => {
     const [user] = useAuthState(auth);
-    const [role] = useAdmin(user);
+    const [role, adminLoading] = useAdmin(user);
+    if (adminLoading) {
+        return <Loading />
+    }
     return (
         <div className="drawer drawer-mobile" >
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -22,12 +26,12 @@ const Dashboard = () => {
                 <ul className="menu p-4 overflow-y-auto w-80 text-base-content">
                     {/* <!-- Sidebar content here --> */}
                     <li><Link to='/dashboard'>My Appointments</Link></li>
-                    <li><Link to='/dashboard/myreviews'>My Reviews</Link></li>
+                    <li><NavLink to='/dashboard/myreviews'>My Reviews</NavLink></li>
                     {
                         role === 'admin' && <>
-                            <li><Link to='/dashboard/users'>All User</Link></li>
-                            <li><Link to='/dashboard/adddoctor'>Add Doctor</Link></li>
-                            <li><Link to='/dashboard/managedoctor'>Manage Doctors</Link></li>
+                            <li><NavLink to='/dashboard/users'>All User</NavLink></li>
+                            <li><NavLink to='/dashboard/adddoctor'>Add Doctor</NavLink></li>
+                            <li><NavLink to='/dashboard/managedoctor'>Manage Doctors</NavLink></li>
 
                         </>
                     }
