@@ -19,7 +19,7 @@ const Appointment = ({ appointment, serial, refetch }) => {
         })
             .then(result => {
                 if (result.isConfirmed) {
-                    fetch(`http://localhost:5000/booking/delete/${_id}`, {
+                    fetch(`https://intense-gorge-54941.herokuapp.com/booking/delete/${_id}`, {
                         method: 'DELETE',
                         headers: {
                             authorization: `Bearer ${localStorage.getItem('accessToken')}`

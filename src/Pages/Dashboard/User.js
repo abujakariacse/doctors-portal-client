@@ -6,26 +6,39 @@ import Swal from 'sweetalert2';
 const User = ({ user, serial, refetch }) => {
     const { email, role } = user;
     const handleMakeAdmin = () => {
-        fetch(`http://localhost:5000/user/admin/${email}`, {
+        fetch(`https://intense-gorge-54941.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 403) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops',
+                        text: "You haven't access to make an Admin",
+                        showConfirmButton: false,
+                        timer: 1200
+                    })
+                }
+                return res.json()
+            })
             .then(data => {
-                refetch();
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Maked Admin',
-                    text: 'User has been successfully converted to Admin',
-                    showConfirmButton: false,
-                    timer: 1200
-                })
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Maked Admin',
+                        text: 'User has been successfully converted to Admin',
+                        showConfirmButton: false,
+                        timer: 1200
+                    })
+                }
             })
     }
     const handleDeleteApi = () => {
-        fetch(`http://localhost:5000/user/delete/${email}`, {
+        fetch(`https://intense-gorge-54941.herokuapp.com/user/delete/${email}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -63,13 +76,24 @@ const User = ({ user, serial, refetch }) => {
             })
     }
     const handleRemoveAdmin = () => {
-        fetch(`http://localhost:5000/admin/remove/${email}`, {
+        fetch(`https://intense-gorge-54941.herokuapp.com/admin/remove/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 403) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Opps',
+                        text: "You haven't access to remove an Admin",
+                        showConfirmButton: false,
+                        timer: 1600
+                    })
+                }
+                return res.json()
+            })
             .then(data => {
                 if (data.modifiedCount) {
                     refetch()

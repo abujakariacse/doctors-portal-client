@@ -11,7 +11,7 @@ import Appointment from './Appointment';
 const MyAppointments = () => {
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
-    const { data, isLoading, refetch } = useQuery('appointments', () => fetch(`http://localhost:5000/myappointments?email=${user?.email}`, {
+    const { data, isLoading, refetch } = useQuery('appointments', () => fetch(`https://intense-gorge-54941.herokuapp.com/myappointments?email=${user?.email}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
