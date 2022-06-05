@@ -16,6 +16,7 @@ const ManageDoctors = () => {
                 <thead style={{ backgroundColor: '#E6E6E6' }}>
                     <tr>
                         <th>Serial No.</th>
+                        <th>Avatar</th>
                         <th>Doctors Name</th>
                         <th>Speciality</th>
                         <th>Email</th>
@@ -28,6 +29,11 @@ const ManageDoctors = () => {
                         key={doctor._id}>
                         <tr>
                             <th>{index + 1}</th>
+                            <td><span className="avatar online">
+                                <span className="w-16">
+                                    <img className='rounded-full' src={doctor.img} alt='' />
+                                </span>
+                            </span></td>
                             <td>{doctor.name}</td>
                             <td>{doctor.speciality}</td>
                             <td>{doctor.email}</td>
