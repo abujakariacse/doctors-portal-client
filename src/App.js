@@ -16,6 +16,8 @@ import MyReviews from './Pages/Dashboard/MyReviews';
 import Users from './Pages/Dashboard/Users';
 import RequireAdmin from './Pages/Login/RequireAdmin';
 import NotFound from './Pages/NotFound/NotFound';
+import AddDoctor from './Pages/Dashboard/AddDoctor';
+import ManageDoctors from './Pages/Dashboard/ManageDoctors';
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
           <Route path='register' element={<Register />}></Route>
           <Route path='forgotpassword' element={<ForgotPassword />}></Route>
 
+          {/* Nested Routing Start */}
           <Route path='dashboard' element={
             <RequireAuth><Dashboard /></RequireAuth>}>
 
@@ -43,9 +46,21 @@ function App() {
             <Route path='users' element={
               <RequireAdmin>
                 <Users />
-              </RequireAdmin>
-            }></Route>
+              </RequireAdmin>}>
+            </Route>
+            <Route path='adddoctor' element={
+              <RequireAdmin>
+                <AddDoctor />
+              </RequireAdmin>}>
+            </Route>
+            <Route path='managedoctor' element={
+              <RequireAdmin>
+                <ManageDoctors />
+              </RequireAdmin>}>
+            </Route>
           </Route>
+          {/* Nested Routing End */}
+
           <Route path='*' element={<NotFound />}></Route>
         </Routes>
       </Header>

@@ -8,7 +8,7 @@ import BookingModal from './BookingModal';
 const AvailableAppointment = ({ date }) => {
     const [treatment, setTreatment] = useState({});
     const formattedDate = format(date, 'PP');
-    const { data: services, isLoading, refetch } = useQuery(['available', formattedDate], () => fetch(`https://intense-gorge-54941.herokuapp.com/availableSlots?date=${formattedDate}`)
+    const { data: services, isLoading, refetch } = useQuery(['available', formattedDate], () => fetch(`http://localhost:5000/availableSlots?date=${formattedDate}`)
         .then(res => res.json())
     )
 

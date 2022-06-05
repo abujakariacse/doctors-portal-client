@@ -24,7 +24,12 @@ const Dashboard = () => {
                     <li><Link to='/dashboard'>My Appointments</Link></li>
                     <li><Link to='/dashboard/myreviews'>My Reviews</Link></li>
                     {
-                        role === 'admin' && <li><Link to='/dashboard/users'>All User</Link></li>
+                        role === 'admin' && <>
+                            <li><Link to='/dashboard/users'>All User</Link></li>
+                            <li><Link to='/dashboard/adddoctor'>Add Doctor</Link></li>
+                            <li><Link to='/dashboard/managedoctor'>Manage Doctors</Link></li>
+
+                        </>
                     }
                 </ul>
 

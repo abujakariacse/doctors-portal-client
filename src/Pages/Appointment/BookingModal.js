@@ -21,7 +21,7 @@ const BookingModal = ({ treatment, setTreatment, date, refetch }) => {
             patientEmail: email,
             phone: phone
         };
-        fetch('https://intense-gorge-54941.herokuapp.com/booking', {
+        fetch('http://localhost:5000/booking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
