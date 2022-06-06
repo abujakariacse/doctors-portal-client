@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 const User = ({ user, serial, refetch }) => {
     const { email, role } = user;
     const handleMakeAdmin = () => {
-        fetch(`http://localhost:5000/user/admin/${email}`, {
+        fetch(`https://intense-gorge-54941.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -38,7 +38,7 @@ const User = ({ user, serial, refetch }) => {
             })
     }
     const handleDeleteApi = () => {
-        fetch(`http://localhost:5000/user/delete/${email}`, {
+        fetch(`https://intense-gorge-54941.herokuapp.com/user/delete/${email}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -76,7 +76,7 @@ const User = ({ user, serial, refetch }) => {
             })
     }
     const handleRemoveAdmin = () => {
-        fetch(`http://localhost:5000/admin/remove/${email}`, {
+        fetch(`https://intense-gorge-54941.herokuapp.com/admin/remove/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

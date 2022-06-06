@@ -4,7 +4,7 @@ import Loading from '../Shared/Loading/Loading';
 import User from './User';
 
 const Users = () => {
-    const { data, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/users', {
+    const { data, isLoading, refetch } = useQuery('users', () => fetch('https://intense-gorge-54941.herokuapp.com/users', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

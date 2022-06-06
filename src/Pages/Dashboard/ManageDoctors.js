@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import Loading from '../Shared/Loading/Loading';
 
 const ManageDoctors = () => {
-    const { data: doctors, isLoading, refetch } = useQuery('doctors', () => fetch('http://localhost:5000/doctors', {
+    const { data: doctors, isLoading, refetch } = useQuery('doctors', () => fetch('https://intense-gorge-54941.herokuapp.com/doctors', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -29,7 +29,7 @@ const ManageDoctors = () => {
         })
             .then(result => {
                 if (result.isConfirmed) {
-                    fetch(`http://localhost:5000/deletedoctor/${doctor?.email}`, {
+                    fetch(`https://intense-gorge-54941.herokuapp.com/deletedoctor/${doctor?.email}`, {
                         method: 'DELETE',
                         headers: {
                             'content-type': 'application/json',
