@@ -38,6 +38,7 @@ const ManageDoctors = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
+                            console.log(data)
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Deleted',
